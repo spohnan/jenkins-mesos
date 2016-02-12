@@ -1,0 +1,23 @@
+{
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+      { "containerPath": "/var/lib/jenkins", "hostPath": "/mnt/docker/jenkins_home", "mode": "RW" }
+    ],
+    "docker": {
+      "image": "spohnan/jenkins-mesos",
+      "network": "HOST",
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": true
+    }
+  },
+  "labels": {
+    "billing": "devops"
+  },
+  "healthChecks": [ { "path": "/", "port": 8080 } ],
+  "id": "jenkins-mesos",
+  "instances": 1,
+  "cpus": 1.0,
+  "mem": 2048
+}
