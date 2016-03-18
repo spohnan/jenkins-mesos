@@ -1,23 +1,27 @@
 {
+  "id": "jenkins-master",
+  "instances": 1,
+  "cpus": 0.2,
+  "mem": 2048,
+  "healthChecks": [ { "path": "/", "port": 8888 } ],
   "container": {
     "type": "DOCKER",
-    "volumes": [
-      { "containerPath": "/var/lib/jenkins", "hostPath": "/mnt/docker/jenkins_home", "mode": "RW" }
-    ],
     "docker": {
       "image": "spohnan/jenkins-mesos",
       "network": "HOST",
-      "privileged": false,
-      "parameters": [],
       "forcePullImage": true
-    }
+    },
+    "volumes": [
+      { "containerPath": "/var/lib/jenkins", "hostPath": "/mnt/docker/jenkins", "mode": "RW" }
+    ]
   },
-  "labels": {
-    "billing": "devops"
-  },
-  "healthChecks": [ { "path": "/", "port": 8080 } ],
-  "id": "jenkins-master",
-  "instances": 1,
-  "cpus": 1.0,
-  "mem": 2048
+  "env": {
+    "HOST": "jenkins-master.marathon.mesos",
+    "JENKINS_JAVA_OPTIONS": "-Dhudson.slaves.NodeProvisioner.MARGIN=40 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.75 -Xms512m -Xmx2000m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dorg.apache.commons.jelly.tags.fmt.timeZone=America/New_York",
+    "JENKINS_CMDLINE_OPTIONS": "--httpPort=8888",
+    "JENKINS_PORT": "8888",
+    "JENKINS_HOME": "/var/lib/jenkins",
+    "JENKINS_FRAMEWORK_NAME": "Jenkins Scheduler",
+    "JENKINS_MESOS_MASTER": "zk://{{ zookeeper_hostnames }}/mesos"
+  }
 }
