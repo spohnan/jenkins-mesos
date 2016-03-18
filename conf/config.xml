@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+    <disabledAdministrativeMonitors>
+        <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
+    </disabledAdministrativeMonitors>
+    <numExecutors>0</numExecutors>
+    <mode>NORMAL</mode>
+    <useSecurity>true</useSecurity>
+    <authorizationStrategy class="hudson.security.AuthorizationStrategy$Unsecured"/>
+    <securityRealm class="hudson.security.SecurityRealm$None"/>
+    <disableRememberMe>false</disableRememberMe>
+    <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+    <workspaceDir>${JENKINS_HOME}/workspace/${ITEM_FULLNAME}</workspaceDir>
+    <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+    <jdks/>
+    <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+    <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+    <clouds>
+        <org.jenkinsci.plugins.mesos.MesosCloud plugin="mesos@0.11.0">
+            <name>MesosCloud</name>
+            <nativeLibraryPath>/usr/lib/libmesos.so</nativeLibraryPath>
+            <master></master>
+            <description></description>
+            <frameworkName>Jenkins Scheduler</frameworkName>
+            <role>*</role>
+            <slavesUser></slavesUser>
+            <principal></principal>
+            <secret></secret>
+            <checkpoint>true</checkpoint>
+            <onDemandRegistration>false</onDemandRegistration>
+            <jenkinsURL></jenkinsURL>
+            <slaveInfos>
+                <org.jenkinsci.plugins.mesos.MesosSlaveInfo>
+                    <slaveCpus>0.5</slaveCpus>
+                    <slaveMem>1024</slaveMem>
+                    <executorCpus>0.1</executorCpus>
+                    <maxExecutors>1</maxExecutors>
+                    <executorMem>128</executorMem>
+                    <remoteFSRoot>/home/jenkins</remoteFSRoot>
+                    <idleTerminationMinutes>3</idleTerminationMinutes>
+                    <jvmArgs>-Xms16m -XX:+UseConcMarkSweepGC -Djava.net.preferIPv4Stack=true</jvmArgs>
+                    <jnlpArgs>-noReconnect</jnlpArgs>
+                    <containerInfo>
+                        <type>DOCKER</type>
+                        <dockerImage>spohnan/jenkins-worker</dockerImage>
+                        <networking>HOST</networking>
+                        <portMappings class="empty-list"/>
+                        <volumes>
+                            <org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                                <containerPath>/var/run/docker.sock</containerPath>
+                                <hostPath>/var/run/docker.sock</hostPath>
+                                <readOnly>false</readOnly>
+                            </org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                            <org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                                <containerPath>/bin/docker</containerPath>
+                                <hostPath>/usr/bin/docker</hostPath>
+                                <readOnly>false</readOnly>
+                            </org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                            <org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                                <containerPath>/home/jenkins</containerPath>
+                                <hostPath>/home/jenkins</hostPath>
+                                <readOnly>false</readOnly>
+                            </org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                            <org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                                <containerPath>/root/.m2</containerPath>
+                                <hostPath>/root/.m2</hostPath>
+                                <readOnly>false</readOnly>
+                            </org.jenkinsci.plugins.mesos.MesosSlaveInfo_-Volume>
+                        </volumes>
+                        <useCustomDockerCommandShell>false</useCustomDockerCommandShell>
+                        <customDockerCommandShell></customDockerCommandShell>
+                        <dockerPrivilegedMode>false</dockerPrivilegedMode>
+                        <dockerForcePullImage>false</dockerForcePullImage>
+                    </containerInfo>
+                    <mode>NORMAL</mode>
+                    <labelString>mesos</labelString>
+                </org.jenkinsci.plugins.mesos.MesosSlaveInfo>
+            </slaveInfos>
+        </org.jenkinsci.plugins.mesos.MesosCloud>
+    </clouds>
+    <slaves/>
+    <quietPeriod>3</quietPeriod>
+    <scmCheckoutRetryCount>3</scmCheckoutRetryCount>
+    <views>
+        <hudson.model.AllView>
+            <owner class="hudson" reference="../../.."/>
+            <name>All</name>
+            <filterExecutors>false</filterExecutors>
+            <filterQueue>false</filterQueue>
+            <properties class="hudson.model.View$PropertyList"/>
+        </hudson.model.AllView>
+    </views>
+    <primaryView>All</primaryView>
+    <slaveAgentPort>0</slaveAgentPort>
+    <label></label>
+    <nodeProperties/>
+    <globalNodeProperties/>
+    <noUsageStatistics>true</noUsageStatistics>
+</hudson>
