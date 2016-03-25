@@ -27,6 +27,5 @@ COPY scripts/bootstrap.py /usr/local/bin/
 RUN chmod +x /usr/local/bin/bootstrap.py
 
 COPY conf/config.xml /usr/local/src/jenkins-config.xml
-COPY conf/jenkins.model.JenkinsLocationConfiguration.xml /usr/local/src/jenkins.model.JenkinsLocationConfiguration.xml
 
 ENTRYPOINT [ "/usr/local/bin/run-jenkins.sh" ]
