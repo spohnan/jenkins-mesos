@@ -18,6 +18,15 @@ JENKINS_PLUGINS=(
     "mesos/0.12.0"
     "saferestart/0.3"
     "scm-api/1.1"
+    "workflow-api/1.15"
+    "workflow-cps/1.15"
+    "workflow-job/1.15"
+    "workflow-basic-steps/1.15"
+    "workflow-cps-global-lib/1.15"
+    "workflow-step-api/1.15"
+    "workflow-support/1.15"
+    "workflow-scm-step/1.15"
+    "workflow-durable-task-step/1.15"
     "workflow-aggregator/1.15"
 )
 
